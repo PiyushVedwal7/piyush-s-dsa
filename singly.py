@@ -47,4 +47,25 @@ class SLL:
             temp = temp.next
         print(result)
 
+    def delete_last(self):
+        if self.is_empty():
+            print("List is empty")
+            return
+        if self.start.next is None:
+            self.start = None
+        else:
+            temp = self.start
+            while temp.next.next is not None:
+                temp = temp.next
+            temp.next = None    
+
+
+    def peek_last(self):
+        if self.is_empty():
+            raise IndexError("empty list")
+        temp = self.start
+        while temp.next is not None:
+            temp = temp.next
+        return temp.item        
+
 # Driver code
