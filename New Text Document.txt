@@ -1,0 +1,158 @@
+#1
+
+def capitalize_name(full_name):
+    return ' '.join(word.capitalize() for word in full_name.split())
+
+# Read input
+full_name = input()
+
+# Print the result
+print(capitalize_name(full_name))
+
+
+
+#2
+
+def average(array):
+    # Use a set to get distinct heights
+    distinct_heights = set(array)
+    
+    # Compute average: sum divided by count
+    return sum(distinct_heights) / len(distinct_heights)
+
+if __name__ == '__main__':
+    n = int(input())  # number of heights (not used in calculation)
+    arr = list(map(int, input().split()))
+    result = average(arr)
+    print(f"{result:.3f}")  # print rounded to 3 decimal places
+
+
+
+#3
+
+import textwrap
+
+def wrap(string, max_width):
+    return textwrap.fill(string, max_width)
+
+if __name__ == '__main__':
+    string = input()
+    max_width = int(input())
+    result = wrap(string, max_width)
+    print(result)
+
+
+#4
+
+def print_rangoli(size):
+    import string
+    alpha = string.ascii_lowercase
+
+    lines = []
+    for i in range(size):
+        left = alpha[size-1:i:-1]  # descending part
+        center = alpha[i:size]     # ascending part
+        row = '-'.join(left + center)
+        width = 4 * size - 3
+        lines.append(row.center(width, '-'))
+
+    # Full rangoli: top half + bottom half (excluding middle line again)
+    print('\n'.join(lines[::-1] + lines[1:]))
+
+if __name__ == '__main__':
+    n = int(input())
+    print_rangoli(n)
+
+
+#5
+
+def print_rangoli(size):
+    import string
+    alpha = string.ascii_lowercase
+
+    lines = []
+    for i in range(size):
+        left = alpha[size-1:i:-1]  # descending part
+        center = alpha[i:size]     # ascending part
+        row = '-'.join(left + center)
+        width = 4 * size - 3
+        lines.append(row.center(width, '-'))
+
+    # Full rangoli: top half + bottom half (excluding middle line again)
+    print('\n'.join(lines[::-1] + lines[1:]))
+
+if __name__ == '__main__':
+    n = int(input())
+    print_rangoli(n)
+
+
+#6
+from collections import Counter
+
+# Read input
+X = int(input())  # Number of shoes
+shoe_sizes = list(map(int, input().split()))
+shoe_inventory = Counter(shoe_sizes)
+
+N = int(input())  # Number of customers
+earnings = 0
+
+for _ in range(N):
+    size, price = map(int, input().split())
+    if shoe_inventory[size] > 0:
+        earnings += price
+        shoe_inventory[size] -= 1
+
+print(earnings)
+
+
+#7
+# Read number of test cases
+T = int(input())
+
+for _ in range(T):
+    try:
+        a, b = input().split()
+        result = int(a) // int(b)
+        print(result)
+    except ZeroDivisionError as e:
+        print("Error Code:", e)
+    except ValueError as e:
+        print("Error Code:", e)
+
+
+#8
+import re
+
+# Read number of test cases
+T = int(input())
+
+for _ in range(T):
+    pattern = input()
+    try:
+        re.compile(pattern)
+        print(True)
+    except re.error:
+        print(False)
+
+#9
+n = int(input())  # Number of elements in the set
+s = set(map(int, input().split()))  # The set
+
+N = int(input())  # Number of commands
+
+for _ in range(N):
+    cmd = input().split()
+    
+    if cmd[0] == "pop":
+        s.pop()
+    elif cmd[0] == "remove":
+        try:
+            s.remove(int(cmd[1]))
+        except KeyError:
+            pass  # In case remove is used incorrectly, although the input guarantees correct usage
+    elif cmd[0] == "discard":
+        s.discard(int(cmd[1]))
+
+print(sum(s))
+
